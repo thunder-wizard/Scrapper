@@ -1,0 +1,60 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment directories
+env/
+venv/
+*.env
+
+# Python egg and distribution files
+*.egg
+*.egg-info
+dist/
+build/
+*.manifest
+*.spec
+
+# Dependency directories
+pip-log.txt
+pip-delete-this-directory.txt
+*.lock
+
+# Test and coverage directories
+.coverage
+*.cover
+nosetests.xml
+coverage.xml
+*.hypothesis/
+*.tox/
+*.nox/
+*.coverage.*
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and temporary files
+*.log
+*.bak
+*.tmp
+*.swp
+
+# MongoDB data directory (if you use a local MongoDB instance)
+mongo_data/
+
+# FastAPI specific
+*.db
+*.sqlite3
+db.sqlite3
+
+# dotenv file to store environment variables
+.env
+*.env
+
+# Backup files from text editors
+*~
+*.bak
