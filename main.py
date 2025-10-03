@@ -4,6 +4,7 @@ from pymongo import MongoClient
 from typing import List
 import os
 from dotenv import load_dotenv
+from bson import ObjectId
 from fastapi.middleware.cors import CORSMiddleware
 
 # Load environment variables from the .env file
@@ -23,7 +24,9 @@ app = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # Allow your frontend's origin
+    allow_origins=[
+        "*",
+    ],  # Allow your frontend's origin
     allow_credentials=True,
     allow_methods=["*"],  # Allows all HTTP methods
     allow_headers=["*"],  # Allows all headers
@@ -65,14 +68,14 @@ def update_item(item_id: str, saved: bool):
     Updates the saved status of an item based on its ID.
     """
     result = collection.update_one(
-        {"_id": item_id},
+        {"_id": ObjectId(item_id)},
         {"$set": {"like": saved}}
     )
     
     if result.matched_count == 0:
         raise HTTPException(status_code=404, detail="Item not found")
     
-    item = collection.find_one({"_id": item_id})
+    item = collection.find_one({"_id": ObjectId(item_id)})
     return CollectibleItem(
         id=str(item["_id"]),
         name=item["title"],
